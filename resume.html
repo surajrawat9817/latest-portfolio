@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Suraj Rawat - Resume</title>
+  <style>
+    :root {
+      --text: #111827;
+      --muted: #4b5563;
+      --border: #e5e7eb;
+      --accent: #0f172a;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      margin: 32px;
+      line-height: 1.5;
+    }
+    h1 { font-size: 24px; margin: 0 0 6px; }
+    h2 { font-size: 16px; margin: 24px 0 8px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+    h3 { font-size: 14px; margin: 12px 0 4px; }
+    p { margin: 0 0 8px; color: var(--muted); }
+    ul { margin: 6px 0 10px 18px; }
+    li { margin: 4px 0; }
+    .top {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .contact { font-size: 12px; color: var(--muted); }
+    .row {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .role { font-weight: 700; color: var(--accent); }
+    .company { color: var(--muted); }
+    .date { color: var(--muted); font-size: 12px; }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 8px 18px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .skills-grid strong { color: var(--text); }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <h1>Suraj Rawat</h1>
+    <div class="contact">
+      surajrawat9817@gmail.com | +91-9817647369 | Pune, Maharashtra | linkedin.com/in/surajrawat1210
+    </div>
+  </header>
+
+  <section>
+    <h2>Summary</h2>
+    <p>
+      Experienced software engineer with a strong background in .NET and C#, with 3+ years of professional
+      experience. Skilled in designing, developing, and maintaining robust applications with a focus on
+      high-quality, scalable solutions. Strong in problem-solving, debugging, and continuous learning.
+    </p>
+  </section>
+
+  <section>
+    <h2>Experience</h2>
+    <div class="row">
+      <div>
+        <div class="role">Software Engineer-II</div>
+        <div class="company">Tripstack (Etraveli Group), Pune</div>
+      </div>
+      <div class="date">July 2022 - Present</div>
+    </div>
+    <ul>
+      <li>Developed scalable backend solutions using .NET Core and Web API for automation flows.</li>
+      <li>Integrated airline APIs via REST and SOAP for real-time flight data and booking.</li>
+      <li>Collaborated with product teams on requirements, estimations, and sprint planning.</li>
+      <li>Created technical analysis documents and architectural plans for scalable design.</li>
+      <li>Implemented CI/CD pipelines using Concourse for automated deployments.</li>
+      <li>Used PostgreSQL and Redis for persistent and in-memory storage.</li>
+      <li>Designed unit and mock tests to maintain high test coverage.</li>
+      <li>Used SonarQube for code quality checks and reporting.</li>
+    </ul>
+
+    <h3>Key Projects</h3>
+    <ul>
+      <li>
+        <strong>AYM (Automatic Yield Management) Scraper Service</strong>
+        <ul>
+          <li>Built a distributed scraping system using .NET 8 background workers (IHostedService).</li>
+          <li>Implemented async communication with Kafka and GCP Pub/Sub, stored results in GCS.</li>
+          <li>Added dynamic configuration with Etcd and Consul, reduced code duplication by 80%.</li>
+        </ul>
+      </li>
+      <li>
+        <strong>BEST (Booking Email Service Tunnel)</strong>
+        <ul>
+          <li>Developed .NET Core Web APIs to manage airline and email accounts.</li>
+          <li>Built background workers and Etcd-based concurrency control.</li>
+          <li>Implemented RabbitMQ-based email fetcher and forwarder services using IMAP.</li>
+        </ul>
+      </li>
+      <li>
+        <strong>ATLAS</strong>
+        <ul>
+          <li>Built address resolution service using ASP.NET Core and Entity Framework Core.</li>
+          <li>Used Redis for caching and reusable contracts across microservices.</li>
+        </ul>
+      </li>
+      <li>
+        <strong>Fiddler Calls Visualizer</strong>
+        <ul>
+          <li>Built a web tool with Node.js and Express to visualize Fiddler traffic logs.</li>
+          <li>Parsed .saz files and visualized dependencies using D3.js and Bootstrap.</li>
+        </ul>
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Skills</h2>
+    <div class="skills-grid">
+      <div><strong>Languages:</strong> C#, Java, Python, JavaScript, SQL</div>
+      <div><strong>Frameworks:</strong> .NET Core, ASP.NET Core, Web API, React.js, Node.js, Angular, Bootstrap</div>
+      <div><strong>Databases:</strong> MongoDB, PostgreSQL, Redis, MySQL, SQL Server</div>
+      <div><strong>Messaging:</strong> RabbitMQ, Kafka</div>
+      <div><strong>Cloud/DevOps:</strong> GCP, Docker, CI/CD, Concourse, Kubernetes</div>
+      <div><strong>Tools:</strong> Git, Bitbucket, Postman, Selenium, Fiddler, VS, VS Code, Grafana, Kibana</div>
+      <div><strong>Testing:</strong> xUnit, NUnit</div>
+      <div><strong>Practices:</strong> Code Reviews, Agile/Scrum, Sprint Planning, Documentation</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Education</h2>
+    <p><strong>Bachelor of Science in Computer Science</strong>, University of Delhi (2019 - 2022), CGPA: 8.9</p>
+    <p><strong>12th</strong>: Holy Child Senior Secondary School, Hisar, Haryana (2017 - 2019), 91.8%</p>
+    <p><strong>10th</strong>: Holy Child Senior Secondary School, Hisar, Haryana (2015 - 2017), 92%</p>
+  </section>
+</body>
+</html>

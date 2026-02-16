@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Suraj Rawat - Full Stack Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <style>
+    :root {
+      --bg: #0e1116;
+      --bg-2: #121826;
+      --card: #151c2f;
+      --text: #f4f7ff;
+      --muted: #a9b3c9;
+      --accent: #ffb347;
+      --accent-2: #51d1ff;
+      --accent-3: #8ef5c8;
+      --glow: rgba(255, 179, 71, 0.35);
+      --shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+      --radius: 18px;
+      --grid: linear-gradient(transparent 0 98%, rgba(255,255,255,0.04) 98% 100%),
+              linear-gradient(90deg, transparent 0 98%, rgba(255,255,255,0.04) 98% 100%);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Sora", system-ui, -apple-system, sans-serif;
+      background: radial-gradient(1200px 600px at 80% -10%, rgba(81, 209, 255, 0.25), transparent 70%),
+        radial-gradient(1200px 600px at -10% 10%, rgba(255, 179, 71, 0.2), transparent 70%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: var(--grid);
+      background-size: 80px 80px;
+      opacity: 0.25;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(1200px, 92vw);
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(16px);
+      background: rgba(10, 12, 18, 0.75);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 0;
+      gap: 16px;
+    }
+
+    .brand {
+      font-family: "Fraunces", serif;
+      font-size: 1.4rem;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .nav-toggle {
+      display: none;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text);
+      padding: 8px 12px;
+      border-radius: 10px;
+      font-size: 1rem;
+    }
+
+    .nav-links a {
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: linear-gradient(120deg, var(--accent), #ffd38c);
+      color: #1c1306;
+      font-weight: 600;
+      box-shadow: 0 10px 30px rgba(255, 179, 71, 0.35);
+      transition: transform 0.2s ease;
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-2px);
+    }
+
+    .hero {
+      padding: 90px 0 80px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      grid-template-areas:
+        "intro media"
+        "body media";
+      gap: 40px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(81, 209, 255, 0.15);
+      color: var(--accent-2);
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .hero-intro {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .hero h1 {
+      font-family: "Fraunces", serif;
+      font-size: clamp(2.4rem, 4vw, 3.8rem);
+      line-height: 1.1;
+      margin-bottom: 14px;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(120deg, #ffd38c, #51d1ff 50%, #8ef5c8);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .btn {
+      padding: 12px 20px;
+      border-radius: 14px;
+      border: 1px solid transparent;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(130deg, var(--accent), #ffd38c);
+      color: #1c1306;
+      box-shadow: 0 14px 40px rgba(255, 179, 71, 0.35);
+    }
+
+    .btn-ghost {
+      border-color: rgba(255, 255, 255, 0.15);
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 16px;
+    }
+
+    .stat {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 16px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .stat h3 {
+      font-size: 1.6rem;
+      font-weight: 700;
+    }
+
+    .stat p {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .profile-wrap {
+      position: relative;
+      justify-self: center;
+    }
+
+    .profile {
+      width: min(320px, 70vw);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+
+    .float-orb {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      filter: blur(0.5px);
+      opacity: 0.7;
+      animation: float 8s ease-in-out infinite;
+    }
+
+    .orb-1 {
+      background: rgba(81, 209, 255, 0.2);
+      top: -30px;
+      left: -40px;
+    }
+
+    .orb-2 {
+      background: rgba(255, 179, 71, 0.25);
+      bottom: -40px;
+      right: -30px;
+      animation-delay: -2s;
+    }
+
+    .section {
+      padding: 80px 0;
+    }
+
+    .section-title {
+      font-family: "Fraunces", serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      margin-bottom: 18px;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      max-width: 700px;
+      margin-bottom: 36px;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background: linear-gradient(160deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+      border-radius: var(--radius);
+      padding: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(300px 200px at 10% 0%, rgba(255, 179, 71, 0.12), transparent 60%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .card:hover::after {
+      opacity: 1;
+    }
+
+    .pill-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .pill {
+      background: rgba(81, 209, 255, 0.15);
+      border: 1px solid rgba(81, 209, 255, 0.3);
+      color: var(--text);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .skill-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .skill-list span {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--muted);
+    }
+
+    .timeline {
+      display: grid;
+      gap: 20px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 20px;
+      align-items: start;
+      background: rgba(255, 255, 255, 0.04);
+      padding: 22px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .timeline-item h4 {
+      font-size: 1.1rem;
+      margin-bottom: 4px;
+    }
+
+    .timeline-item ul {
+      list-style: none;
+      display: grid;
+      gap: 8px;
+      color: var(--muted);
+      margin-top: 12px;
+    }
+
+    .timeline-item ul li::before {
+      content: "*";
+      color: var(--accent);
+      margin-right: 8px;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 26px;
+    }
+
+    .project-card {
+      border-radius: 20px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px) scale(1.01);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+    }
+
+    .project-card img {
+      height: 190px;
+      object-fit: cover;
+    }
+
+    .project-content {
+      padding: 18px 20px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      height: 100%;
+    }
+
+    .project-content p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      min-height: 4.8em;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .project-tags span {
+      font-size: 0.75rem;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text);
+    }
+
+    .cta {
+      background: linear-gradient(120deg, rgba(255, 179, 71, 0.18), rgba(81, 209, 255, 0.15));
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 36px;
+      border-radius: 24px;
+      display: grid;
+      gap: 16px;
+      align-items: center;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 22px;
+    }
+
+    .contact-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 16px;
+      padding: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .contact-card a,
+    .contact-card p {
+      word-break: break-word;
+      overflow-wrap: anywhere;
+    }
+
+    footer {
+      padding: 30px 0 60px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(16px); }
+    }
+
+
+    @media (max-width: 860px) {
+      .timeline-item {
+        grid-template-columns: 1fr;
+      }
+      .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        gap: 12px;
+        background: rgba(15, 23, 42, 0.8);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 14px;
+        padding: 14px;
+      }
+      .nav-cta {
+        font-size: 0.9rem;
+      }
+      .nav-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .nav-links.open {
+        display: flex;
+      }
+      .hero {
+        padding: 70px 0 60px;
+      }
+      .hero-stats {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      }
+      .profile {
+        width: min(260px, 70vw);
+      }
+      .section {
+        padding: 64px 0;
+      }
+      .project-grid {
+        grid-template-columns: 1fr;
+      }
+      .cta {
+        padding: 26px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .hero {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+          "media"
+          "intro"
+          "body";
+      }
+      .hero-media {
+        margin-top: 6px;
+      }
+      .nav-inner {
+        flex-wrap: wrap;
+      }
+      .nav-links {
+        order: 3;
+      }
+      .nav-cta {
+        width: 100%;
+        justify-content: center;
+      }
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .btn {
+        justify-content: center;
+      }
+      .stat h3 {
+        font-size: 1.4rem;
+      }
+      .project-card img {
+        height: 170px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <div class="brand">Suraj Rawat</div>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      <a class="nav-cta" href="#contact"><i class="fa-solid fa-bolt"></i>Let's Connect</a>
+    </div>
+  </nav>
+
+  <header class="container hero">
+    <div class="hero-intro" style="grid-area: intro;">
+      <h1>Hi, I'm <span>Suraj Rawat</span></h1>
+      <div class="badge hero-badge"><i class="fa-solid fa-code"></i>Full Stack Developer</div>
+    </div>
+    <div class="profile-wrap hero-media" style="grid-area: media;">
+      <div class="float-orb orb-1"></div>
+      <div class="float-orb orb-2"></div>
+      <img class="profile" src="SurajRawat.jpeg" alt="Suraj Rawat" />
+    </div>
+    <div class="hero-body" style="grid-area: body;">
+      <p>
+        Passionate full stack developer turning ideas into impactful digital experiences. I build cloud-ready
+        products with clean architecture, microservices, and delightful user interfaces.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#projects"><i class="fa-solid fa-laptop-code"></i>View Projects</a>
+        <a class="btn btn-ghost" href="https://github.com/surajrawat9817" target="_blank" rel="noopener">
+          <i class="fa-brands fa-github"></i>GitHub
+        </a>
+        <a class="btn btn-ghost" href="surajrawat_resume.pdf" target="_blank" rel="noopener">
+          <i class="fa-solid fa-file-pdf"></i>Resume (PDF)
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <h3 data-count="3">0+</h3>
+          <p>Years Building Products</p>
+        </div>
+        <div class="stat">
+          <h3 data-count="15">0+</h3>
+          <p>Backend & API Deliverables</p>
+        </div>
+        <div class="stat">
+          <h3 data-count="8">0+</h3>
+          <p>Cloud & DevOps Tools</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="about" class="section">
+    <div class="container">
+      <h2 class="section-title reveal">About Me</h2>
+      <p class="section-subtitle reveal">
+        I'm a full stack developer with 3+ years of hands-on experience building scalable, cloud-ready applications.
+        From crafting responsive UIs in React to designing efficient APIs in .NET Core, I love bridging design and
+        functionality to deliver user-first products.
+      </p>
+      <div class="about-grid">
+        <div class="card reveal">
+          <h3>What I Build</h3>
+          <p>
+            Clean architecture services, microservices, cloud deployments, and fast frontends. I thrive on complex
+            airline booking workflows, resilient API integrations, and mission-critical reliability.
+          </p>
+          <div class="pill-grid" style="margin-top: 16px;">
+            <span class="pill">Microservices</span>
+            <span class="pill">Clean Architecture</span>
+            <span class="pill">Cloud Native</span>
+          </div>
+        </div>
+        <div class="card reveal">
+          <h3>How I Work</h3>
+          <p>
+            I partner with teams to ship faster, write robust tests, and build observability into the stack. I enjoy
+            DevOps practices, containerized deployments, and continuous learning.
+          </p>
+          <div class="pill-grid" style="margin-top: 16px;">
+            <span class="pill">CI/CD</span>
+            <span class="pill">Docker & Kubernetes</span>
+            <span class="pill">Telemetry</span>
+          </div>
+        </div>
+        <div class="card reveal">
+          <h3>Highlights</h3>
+          <p>
+            Led performance-critical enhancements, implemented ancillary services logic, and built internal tools like
+            the Fiddler Calls Visualizer for faster debugging.
+          </p>
+          <div class="pill-grid" style="margin-top: 16px;">
+            <span class="pill">Performance</span>
+            <span class="pill">Reliability</span>
+            <span class="pill">Observability</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="section">
+    <div class="container">
+      <h2 class="section-title reveal">Skills Snapshot</h2>
+      <p class="section-subtitle reveal">A quick scan of the tools and technologies I use to build end-to-end products.</p>
+      <div class="skills-grid">
+        <div class="card reveal">
+          <h3>Languages</h3>
+          <div class="skill-list">
+            <span><i class="fa-solid fa-check"></i> C#</span>
+            <span><i class="fa-solid fa-check"></i> JavaScript</span>
+            <span><i class="fa-solid fa-check"></i> Python</span>
+          </div>
+        </div>
+        <div class="card reveal">
+          <h3>Backend</h3>
+          <div class="skill-list">
+            <span><i class="fa-solid fa-check"></i> .NET Core / .NET 6/8</span>
+            <span><i class="fa-solid fa-check"></i> Entity Framework</span>
+            <span><i class="fa-solid fa-check"></i> Node.js & Express</span>
+          </div>
+        </div>
+        <div class="card reveal">
+          <h3>Frontend</h3>
+          <div class="skill-list">
+            <span><i class="fa-solid fa-check"></i> React.js</span>
+            <span><i class="fa-solid fa-check"></i> Angular</span>
+            <span><i class="fa-solid fa-check"></i> Bootstrap</span>
+          </div>
+        </div>
+        <div class="card reveal">
+          <h3>Databases</h3>
+          <div class="skill-list">
+            <span><i class="fa-solid fa-check"></i> MongoDB</span>
+            <span><i class="fa-solid fa-check"></i> PostgreSQL</span>
+            <span><i class="fa-solid fa-check"></i> Redis</span>
+            <span><i class="fa-solid fa-check"></i> MySQL</span>
+          </div>
+        </div>
+        <div class="card reveal">
+          <h3>Cloud & DevOps</h3>
+          <div class="skill-list">
+            <span><i class="fa-solid fa-check"></i> Docker & Kubernetes</span>
+            <span><i class="fa-solid fa-check"></i> Azure</span>
+            <span><i class="fa-solid fa-check"></i> CI/CD Pipelines</span>
+          </div>
+        </div>
+        <div class="card reveal">
+          <h3>Security & Auth</h3>
+          <div class="skill-list">
+            <span><i class="fa-solid fa-check"></i> JWT Auth</span>
+            <span><i class="fa-solid fa-check"></i> OAuth Integrations</span>
+            <span><i class="fa-solid fa-check"></i> API Validation</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience" class="section">
+    <div class="container">
+      <h2 class="section-title reveal">Experience</h2>
+      <p class="section-subtitle reveal">Impact-driven delivery across airline tech, microservices, and platform reliability.</p>
+      <div class="timeline">
+        <div class="timeline-item reveal">
+          <div>
+            <strong>Mar 2024 - Present</strong>
+            <p class="muted">Tripstack (Etraveli Group), Pune</p>
+          </div>
+          <div>
+            <h4>Software Engineer - II</h4>
+            <ul>
+              <li>Led critical enhancements in airline search and booking workflows, improving reliability and performance.</li>
+              <li>Implemented advanced ancillary services logic including seat mapping, price validation, and edge-case handling.</li>
+              <li>Built resilient microservices using .NET Core, Docker, and Kubernetes within a Clean Architecture approach.</li>
+              <li>Created internal tools like Fiddler Calls Visualizer for efficient debugging of airline traffic.</li>
+              <li>Optimized observability with Serilog, ELK stack, Azure Monitoring, and Redis caching strategies.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-item reveal">
+          <div>
+            <strong>Jul 2022 - Mar 2024</strong>
+            <p class="muted">Tripstack (Etraveli Group), Pune</p>
+          </div>
+          <div>
+            <h4>Software Engineer - I</h4>
+            <ul>
+              <li>Engineered scalable flight booking microservices using .NET 6/8 with clean architecture principles.</li>
+              <li>Integrated third-party airline APIs with dynamic response mapping and transformation logic.</li>
+              <li>Built shared modules for ancillary services, passenger flow logic, and JWT-based auth.</li>
+              <li>Contributed to CI/CD pipelines using Concourse, Docker, and GitHub workflows.</li>
+              <li>Collaborated with QA to refine test automation, smoke testing, and sprint delivery.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="section">
+    <div class="container">
+      <h2 class="section-title reveal">Selected Projects</h2>
+      <p class="section-subtitle reveal">A glimpse at products I've shipped end-to-end - from architecture to deployment.</p>
+      <div class="project-grid">
+        <article class="project-card reveal">
+          <img src="EshopMartProject.png" alt="EshopMart project" />
+          <div class="project-content">
+            <h3>EshopMart - E-commerce Platform</h3>
+            <p>Cloud-native microservices platform with catalog, cart, orders, payments, and secure checkout.</p>
+            <div class="project-tags">
+              <span>.NET 8</span><span>Angular</span><span>Kubernetes</span><span>Redis</span><span>RabbitMQ</span>
+            </div>
+            <div style="margin-top: 14px;">
+              <a class="btn btn-ghost" href="https://github.com/surajrawat9817/EshopMart" target="_blank" rel="noopener">
+                <i class="fa-brands fa-github"></i>View Code
+              </a>
+            </div>
+          </div>
+        </article>
+        <article class="project-card reveal">
+          <img src="fiddlerProject.png" alt="Fiddler Calls Visualizer" />
+          <div class="project-content">
+            <h3>Fiddler Calls Visualizer</h3>
+            <p>Interactive graph-based tool to explore HTTP traffic from Fiddler HAR logs with filters and debugging tools.</p>
+            <div class="project-tags">
+              <span>Node.js</span><span>Express</span><span>D3.js</span><span>Bootstrap</span>
+            </div>
+            <div style="margin-top: 14px;">
+              <a class="btn btn-ghost" href="https://github.com/surajrawat9817/FiddlerMapper" target="_blank" rel="noopener">
+                <i class="fa-brands fa-github"></i>View Code
+              </a>
+            </div>
+          </div>
+        </article>
+        <article class="project-card reveal">
+          <img src="CrudProject.png" alt="CRUD API with Swagger" />
+          <div class="project-content">
+            <h3>CRUD API with Swagger</h3>
+            <p>Secure Node.js CRUD API with auth, email activation, product management, and Swagger docs.</p>
+            <div class="project-tags">
+              <span>Node.js</span><span>MongoDB</span><span>Swagger</span><span>GitHub Actions</span>
+            </div>
+            <div style="margin-top: 14px;">
+              <a class="btn btn-ghost" href="https://github.com/surajrawat9817/SABAK" target="_blank" rel="noopener">
+                <i class="fa-brands fa-github"></i>View Code
+              </a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section">
+    <div class="container">
+      <div class="cta reveal">
+        <div>
+          <h2 class="section-title">Let's Build Something Impactful</h2>
+          <p class="section-subtitle">Open to full-time roles and product collaborations. Quick to learn, reliable under pressure, and obsessed with quality.</p>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-card">
+            <strong>GitHub</strong>
+            <p><a href="https://github.com/surajrawat9817" target="_blank" rel="noopener">github.com/surajrawat9817</a></p>
+          </div>
+          <div class="contact-card">
+            <strong>LinkedIn</strong>
+            <p>www.linkedin.com/in/surajrawat1210</p>
+          </div>
+          <div class="contact-card">
+            <strong>Email</strong>
+            <p>surajrawat9817@gmail.com</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>(c) 2026 Suraj Rawat. Crafted to make hiring teams stop and scroll.</p>
+    </div>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const counters = document.querySelectorAll('[data-count]');
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    reveals.forEach((el) => revealObserver.observe(el));
+
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        const target = Number(el.dataset.count || 0);
+        let value = 0;
+        const step = Math.ceil(target / 40);
+        const interval = setInterval(() => {
+          value += step;
+          if (value >= target) {
+            el.textContent = `${target}+`;
+            clearInterval(interval);
+            return;
+          }
+          el.textContent = `${value}+`;
+        }, 35);
+        counterObserver.unobserve(el);
+      });
+    }, { threshold: 0.6 });
+
+    counters.forEach((el) => counterObserver.observe(el));
+
+    if (navToggle && navLinks) {
+      navToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('open');
+      });
+    }
+  </script>
+</body>
+</html>
